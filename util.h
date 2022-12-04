@@ -5,7 +5,7 @@
 #include <stdlib.h>
 
 
-#define BUFFER_SIZE 10
+#define BUFFER_SIZE 512
 
 char *secureInput(void);
 #endif

@@ -7,17 +7,29 @@
 int main()
 {
     bignum *num;
+    bignum *num2;
     char *input;
+    char *input2;
 
     printf("Enter a number : ");
     input = secureInput();
 
     if ((num = BigNum(input)) == NULL){
-        fprintf(stderr, "BigNum error !\n");
         exit(1);
     }
+
+    printf("Enter a number : ");
+    input2 = secureInput();
+
+    if ((num2 = BigNum(input2)) == NULL){
+        exit(1);
+    }
+
     printNum(num);
-    destroyBigNum(num);
-    free(input);
+    printf("\n+\n");
+    printNum(num2);
+    printf("\n=\n");
+    printNum(addBigNum(num, num2));
+    
 
 }
