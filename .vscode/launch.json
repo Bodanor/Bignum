@@ -8,7 +8,7 @@
             "name": "(gdb) Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/bignum",
+            "program": "${workspaceFolder}/tests",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",
