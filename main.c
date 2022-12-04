@@ -8,6 +8,8 @@ int main()
 {
     bignum *num;
     bignum *num2;
+    bignum *res;
+
     char *input;
     char *input2;
 
@@ -29,7 +31,14 @@ int main()
     printf("\n+\n");
     printNum(num2);
     printf("\n=\n");
-    printNum(addBigNum(num, num2));
+    res = addBigNum(num, num2);
+    printNum(res);
+
+    free(input);
+    free(input2);
+    destroyBigNum(num);
+    destroyBigNum(num2);
+    destroyBigNum(res);
     
 
 }
