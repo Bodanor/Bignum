@@ -2,24 +2,22 @@
 #include <stdlib.h>
 
 #include "bignum.h"
+#include "util.h"
 
 int main()
 {
-    char buffer[50];
-    int c;
-    unsigned int i = 0;
     bignum *num;
+    char *input;
 
     printf("Enter a number : ");
-    while ((c = getchar()) != '\n' && i < sizeof(buffer) -1)
-        buffer[i++] = c;
+    input = secureInput();
 
-    buffer[i] = '\0';
-    if ((num = BigNum(buffer)) == NULL){
+    if ((num = BigNum(input)) == NULL){
         fprintf(stderr, "BigNum error !\n");
         exit(1);
     }
     printNum(num);
     destroyBigNum(num);
+    free(input);
 
 }
