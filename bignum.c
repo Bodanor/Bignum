@@ -75,11 +75,16 @@ bignum *addBigNum(bignum *src, bignum*src2)
         return NULL;
 
     }
-    for (i = bigger_array->array_size - 1, j = smaller_array->array_size - 1; j >=0; i--, j--)
-    {
+
+    i = bigger_array->array_size - 1, j = smaller_array->array_size - 1;
+
+    while (j >= 0){
         res->array[i] = (bigger_array->array[i] + smaller_array->array[j]) % 10 + report;
         report = (bigger_array->array[i] + smaller_array->array[j]) / 10;
         res_size++;
+        j--;
+        i--;
+
     }
 
     while (i >= 0){
@@ -87,6 +92,7 @@ bignum *addBigNum(bignum *src, bignum*src2)
         i--;
         res_size++;
     }
+    
     res->array_size = res_size;
 
     return res;
