@@ -7,6 +7,7 @@
 #include <ctype.h>
 
 #define ARRAY_BUFF 10
+#define STR_BUFF 10
 
 typedef struct BIGNUM_t bignum;
 
@@ -14,4 +15,5 @@ bignum *BigNum(const char *);
 void destroyBigNum(bignum *);
 void printNum(bignum *);
 bignum *addBigNum(bignum *, bignum*);
+char *BigNumToStr(bignum*);
 #endif
