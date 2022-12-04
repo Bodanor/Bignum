@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -Wall -Wextra -D DEBUG -Og -g
+CFLAGS = -Wall -Wextra -D DEBUG -g
 
 C_SOURCES := $(wildcard *.c)
 C_HEADERS := $(wildcard *.h)

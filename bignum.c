@@ -56,9 +56,12 @@ void destroyBigNum(bignum *ptr)
 
 bignum *addBigNum(bignum *src, bignum*src2)
 {
-    int bigger_size = src->array_size > src2->array_size ? src->array_size : src2->array_size;
+    bignum *bigger_array = src->array_size > src2->array_size ? src : src2;
+    bignum *smaller_array = src->array_size < src2->array_size ? src : src2;
     int report = 0;
     int res_size = 0;
+    int i, j;
+    
 
     bignum *res = (bignum*)malloc(sizeof(bignum));
     if (res == NULL){
@@ -66,22 +69,25 @@ bignum *addBigNum(bignum *src, bignum*src2)
         return NULL;
     }
 
-    res->array = (int*)malloc(sizeof(int)*10);
+    res->array = (int*)malloc(sizeof(int)*bigger_array->array_size + 1);
     if (res->array == NULL){
         fprintf(stderr, "Memory alloc error !\n");
         return NULL;
 
     }
-    while (bigger_size >= 0){
-
-        res->array[bigger_size] = (src->array[bigger_size] + src2->array[bigger_size]) % 10 + report;
-        report = (src->array[bigger_size] + src2->array[bigger_size]) / 10;
-        bigger_size--;
+    for (i = bigger_array->array_size - 1, j = smaller_array->array_size - 1; j >=0; i--, j--)
+    {
+        res->array[i] = (bigger_array->array[i] + smaller_array->array[j]) % 10 + report;
+        report = (bigger_array->array[i] + smaller_array->array[j]) / 10;
         res_size++;
     }
 
-    res->array_size = res_size - 1;
-
+    while (i >= 0){
+        res->array[i] = bigger_array->array[i];
+        i--;
+        res_size++;
+    }
+    res->array_size = res_size;
 
     return res;
 
